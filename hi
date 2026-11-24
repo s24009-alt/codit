@@ -1,0 +1,29 @@
+def load_scores(path):
+    scores = []
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                scores.append(int(line))
+    return scores
+
+
+def calc_average(scores):
+    total = sum(scores)
+    return round(total / len(scores), 2)
+
+
+def to_grade(avg):
+    if avg > 90:
+        return "A"
+    elif avg > 80:
+        return "B"
+    elif avg > 70:
+        return "C"
+    return "F"
+
+
+if __name__ == "__main__":
+    scores = load_scores("scores.txt")
+    avg = calc_average(scores)
+    print(avg, to_grade(avg))
